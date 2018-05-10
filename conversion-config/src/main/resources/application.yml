@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: conversion-config
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: /usr/local/tomcat/project/spring-cloud-conversion-in-docker/config/
+        git:
+          uri: https://github.com/love-dl-forever/spring-cloud-conversion-in-docker
+          search-paths: config
+  profiles:
+    active: git
+
+server:
+  port: 7001
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://conversion-eureka:1234/eureka/
+
