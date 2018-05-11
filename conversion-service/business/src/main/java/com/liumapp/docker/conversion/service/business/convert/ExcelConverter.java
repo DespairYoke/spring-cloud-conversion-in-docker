@@ -17,12 +17,12 @@ import org.springframework.stereotype.Component;
  * @date 5/9/18
  */
 @Component
-@RabbitListener(queues = "excel-converter-queue")
 public class ExcelConverter {
 
     @Autowired
     private AmqpTemplate amqpTemplate;
 
+    @RabbitListener(queues = "excel-converter-queue")
     @RabbitHandler
     public void process (String msg) {
         ExcelPattern excelPattern = JSON.parseObject(msg , ExcelPattern.class);
@@ -35,7 +35,7 @@ public class ExcelConverter {
             cellToPDF.excel2pdf(excelPattern.getPdfPath() , excelPattern.getSysPath());
         } catch (Exception e) {
             // add failed info
-            amqpTemplate.convertAndSend("excel-converter-result-queue", excelResultPattern);
+            amqpTemplate.convertAndSend("excel-converter-result-queue", JSON.toJSONString(excelResultPattern));
             e.printStackTrace();
             return ;
         }

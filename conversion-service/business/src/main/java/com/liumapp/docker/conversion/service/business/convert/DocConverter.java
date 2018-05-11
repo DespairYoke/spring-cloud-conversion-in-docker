@@ -17,12 +17,12 @@ import org.springframework.stereotype.Component;
  * @date 5/9/18
  */
 @Component
-@RabbitListener(queues = "doc-converter-queue")
 public class DocConverter {
 
     @Autowired
     private AmqpTemplate amqpTemplate;
 
+    @RabbitListener(queues = "doc-converter-queue")
     @RabbitHandler
     public void process (String msg) {
         DocPattern docPattern = JSON.parseObject(msg, DocPattern.class);

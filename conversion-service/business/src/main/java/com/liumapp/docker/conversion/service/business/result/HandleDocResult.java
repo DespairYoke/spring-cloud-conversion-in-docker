@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
  * @date 5/9/18
  */
 @Component
-@RabbitListener(queues = "doc-converter-result-queue")
 public class HandleDocResult {
 
     private static Logger logger = LoggerFactory.getLogger(HandleDocResult.class);
 
     @RabbitHandler
+    @RabbitListener(queues = "doc-converter-result-queue")
     public void process (String msg) {
         logger.info("get info from doc-converter-result-queue , msg is : " + msg);
     }

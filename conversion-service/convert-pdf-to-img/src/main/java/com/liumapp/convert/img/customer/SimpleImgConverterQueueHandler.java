@@ -27,7 +27,6 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @date 5/7/18
  */
 @Component
-@RabbitListener(queues = "simple-img-converter-queue")
 public class SimpleImgConverterQueueHandler implements PageConvertStrategy {
 
     private static Logger logger = LoggerFactory.getLogger(SimpleImgConverterQueueHandler.class);
@@ -45,6 +44,7 @@ public class SimpleImgConverterQueueHandler implements PageConvertStrategy {
     private AmqpTemplate amqpTemplate;
 
     @RabbitHandler
+    @RabbitListener(queues = "simple-img-converter-queue")
     public void process (String msg) {
         logger.info("get msg from simple-img-converter-queue , the msg is : \n " + msg + "\n");
         SimplePdfPattern simplePdfPattern = JSON.parseObject(msg, SimplePdfPattern.class);

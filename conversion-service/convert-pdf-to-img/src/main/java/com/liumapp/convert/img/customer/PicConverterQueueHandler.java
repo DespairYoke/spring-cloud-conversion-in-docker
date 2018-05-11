@@ -29,7 +29,6 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @date 5/9/18
  */
 @Component
-@RabbitListener(queues = "pic-converter-queue")
 public class PicConverterQueueHandler implements PageConvertStrategy {
 
     private static Logger logger = LoggerFactory.getLogger(PicConverterQueueHandler.class);
@@ -47,6 +46,7 @@ public class PicConverterQueueHandler implements PageConvertStrategy {
     private AmqpTemplate amqpTemplate;
 
     @RabbitHandler
+    @RabbitListener(queues = "pic-converter-queue")
     public void process (String msg) {
         logger.info("get msg from pic-converter-queue , the msg is : \n " + msg + "\n");
         PagePattern pagePattern = JSON.parseObject(msg , PagePattern.class);
