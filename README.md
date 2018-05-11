@@ -5,10 +5,16 @@ The conversion about doc to pdf , excel to pdf , pdf to img . Running in docker 
 
 * mkdir belown in your system . 
 
-    * /Users/docker/img
+    * /tmp/docker/img
      
-    * /Users/docker/pdf
+    * /tmp/docker/pdf
     
-    * /Users/docker/doc
+    * /tmp/docker/doc
     
-    * /Users/docker/excel
+    * /tmp/docker/excel
+
+* Let you want to convert file put into doc directory.renaming your file to test.doc
+
+* To request localhost:8080/doc. 
+
+* we can enter pdf and img to look our result.
