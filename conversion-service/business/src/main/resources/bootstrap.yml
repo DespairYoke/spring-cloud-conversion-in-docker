@@ -18,4 +18,4 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://conversion-eureka:1234/eureka/
+      defaultZone: http://localhost:1234/eureka/
